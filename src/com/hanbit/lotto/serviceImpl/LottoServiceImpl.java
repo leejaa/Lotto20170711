@@ -21,10 +21,9 @@ public class LottoServiceImpl implements LottoService{
 		lottos=new int[count][6];
 		for(int i=0;i<count;i++){
 			for(int j=0;j<6;j++){
-				do {
-					number=(int)(Math.random()*45)+1;
-				} while (isDuplication(j, number));
-			//중복인지 체크하고 중복 아니면 다음으로 넘어감
+				number=(int)(Math.random()*45)+1;
+				j=isDuplication(j, number)?j-1:j;
+				
 				System.out.println("랜덤숫자는 "+number);
 			lotto[j]=number;
 			}
@@ -54,7 +53,7 @@ public class LottoServiceImpl implements LottoService{
 	@Override
 	public void sort(int[] arr) {
 		int temp=0;
-		for(int i=0;i<arr.length;i++){
+		for(int i=0;i<arr.length-1;i++){
 			for(int j=i+1;j<arr.length;j++){
 				if(arr[i]>arr[j]){
 					temp=arr[i];
@@ -82,5 +81,4 @@ public class LottoServiceImpl implements LottoService{
 		System.out.println("총 카운트 값은 "+lottoCount);
 		count=lottoCount;
 	}
-
 }
