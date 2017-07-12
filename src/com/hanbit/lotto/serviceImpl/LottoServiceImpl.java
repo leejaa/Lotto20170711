@@ -1,5 +1,4 @@
 package com.hanbit.lotto.serviceImpl;
-
 import com.hanbit.lotto.domain.LottoBean;
 import com.hanbit.lotto.service.LottoService;
 
@@ -23,13 +22,11 @@ public class LottoServiceImpl implements LottoService{
 			for(int j=0;j<6;j++){
 				number=(int)(Math.random()*45)+1;
 				j=isDuplication(j, number)?j-1:j;
-				
-				System.out.println("랜덤숫자는 "+number);
-			lotto[j]=number;
+				lotto[j]=number;
 			}
-			sort(lotto);//로또 정렬
-			lottos[i]=lotto;
-			lotto=new int[6];//한줄 로또 다시 초기화
+				sort(lotto);//로또 정렬
+				lottos[i]=lotto;
+				lotto=new int[6];//한줄 로또 다시 초기화
 		}
 	}
 
@@ -74,11 +71,6 @@ public class LottoServiceImpl implements LottoService{
 	@Override
 	public void setCount(LottoBean bean) {
 		// 몇줄을 출력할 것인지 로또 수 계산(최대 5줄)
-		int money=bean.getMoney();
-		System.out.println("넘어온 돈은 "+money);
-		int lottoCount=money/1000;
-		lottoCount=lottoCount>5?5:lottoCount;
-		System.out.println("총 카운트 값은 "+lottoCount);
-		count=lottoCount;
+		count=(bean.getMoney()/1000>5)?5:bean.getMoney()/1000;
 	}
 }
